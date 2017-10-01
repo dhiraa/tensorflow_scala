@@ -41,7 +41,7 @@ trait BuildTool {
       out.toFile()
     }
 
-  /** Actual tasks that can be perfomed on a specific configuration, such as
+  /** Actual tasks that can be performed on a specific configuration, such as
     * configured in a Makefile.
     */
   trait Instance {

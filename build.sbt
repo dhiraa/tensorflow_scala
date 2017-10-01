@@ -46,6 +46,9 @@ lazy val jni = (project in file("./jni"))
     .settings(
       name := "tensorflow-jni",
       libraryDependencies ++= loggingDependencies,
+//      libraryDependencies ++= Seq("net.java.dev.jna" % "jna-platform" % "4.1.0"),
+//      unmanagedResourceDirectories in Compile += baseDirectory.value / "jni/target/native/linux-x86_64/bin/",
+//      includeFilter in (Compile, unmanagedResourceDirectories):= ".dll,.so",
       // Test dependencies
       libraryDependencies += "junit" % "junit" % "4.12",
       libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.1",
@@ -95,3 +98,8 @@ lazy val examples = (project in file("./examples"))
       libraryDependencies ++= loggingDependencies
     )
 
+val libPath = Seq("jni/target/native/linux-x86_64/bin/").mkString(java.io.File.pathSeparator)
+
+javaOptions in run += s"-Djava.library.path=$libPath"
+
+fork := true

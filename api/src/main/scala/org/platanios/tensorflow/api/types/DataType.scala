@@ -356,8 +356,8 @@ private[api] object FLOAT32 extends DataType.Aux[Float] {
   override val byteSize: Int    = 4
   override val priority: Int    = 220
 
-  override def min: ScalaType = -3.4028235e+38f
-  override def max: ScalaType = 3.4028235e+38f
+  override def min: ScalaType = java.lang.Float.valueOf("-3.4028235E38")//-3.4028235e+38f
+  override def max: ScalaType = java.lang.Float.valueOf("3.4028235E38")//3.4028235e+38f
 
   private[api] override def putElementInBuffer(buffer: ByteBuffer, index: Int, element: Float): Int = {
     buffer.putFloat(index, element)

@@ -20,7 +20,7 @@ include_directories(${JNI_INCLUDE_DIRS})
 
 # Find Native TensorFlow Library to Link
 find_library(LIBTENSORFLOW tensorflow HINTS ${LD_LIBRARY_PATH})
-message( STATUS "Checking for libtensorflow.so in following directories:         " ${LD_LIBRARY_PATH} )
+message( STATUS "Checking for libtensorflow.so in following directories: " ${LD_LIBRARY_PATH} )
 if(NOT LIBTENSORFLOW)
   message(FATAL_ERROR "Library `tensorflow` not found.")
 endif()
@@ -37,3 +37,8 @@ set (LIB_NAME ${PROJECT_NAME}) # ${PROJECT_VERSION_MAJOR})
 add_library(${LIB_NAME} SHARED ${LIB_SRC})
 target_link_libraries(${LIB_NAME} ${LIBTENSORFLOW})
 install(TARGETS ${LIB_NAME} LIBRARY DESTINATION .)
+
+#set (LIB_SATTIC_NAME ${PROJECT_NAME}_static)
+#add_library(${LIB_SATTIC_NAME} STATIC ${LIB_SRC})
+#target_link_libraries(${LIB_SATTIC_NAME} ${LIBTENSORFLOW})
+#install(TARGETS ${LIB_SATTIC_NAME} LIBRARY DESTINATION .)
