@@ -1,4 +1,4 @@
-/* Copyright 2017, Mageswaran.D <mageswaran1989@gmail.com>. All Rights Reserved.
+/* Copyright 2017, Emmanouil Antonios Platanios. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -12,21 +12,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package org.platanios.tensorflow.examples
 
 import com.typesafe.scalalogging.Logger
 import org.platanios.tensorflow.api._
 import org.platanios.tensorflow.api.tensors.Tensor
+import org.slf4j.LoggerFactory
 
 //Python Ver:
 //import tensorflow as tf
 //from tensorflow.python.framework import ops
 //sess = tf.Session()
 
-import org.slf4j.LoggerFactory
+
 
 /**
-  * Created by Mageswaran.D <mageswaran1989@gmail.com> on 22/8/17.
+  * Created by Mageswaran.D (mageswaran1989@gmail.com) on 24/04/18.
   */
 object PlaceHolders {
 
@@ -48,18 +50,20 @@ object PlaceHolders {
     //# Print the output, feeding the value of x into the computational graph
     //print(sess.run(y, feed_dict={x: rand_array}))
 
-    val session = tf.Session()
+    val session = Session()
 
     val x = tf.placeholder(FLOAT64, shape = Shape(3,3))
 
     val y = tf.identity(x)
 
-    val tensor2 = Tensor(Tensor(Tensor(2.0), Tensor(0.0), Tensor(5.0)),
+    val data = Tensor(Tensor(Tensor(2.0), Tensor(0.0), Tensor(5.0)),
                         Tensor(Tensor(1.0), Tensor(4.0), Tensor(7.0)),
                         Tensor(Tensor(56.0), Tensor(-2.0), Tensor(-9.0)))
 
     session.run(targets = tf.globalVariablesInitializer())
-    val feed_dict = Map(x -> tensor2)
+
+    val feed_dict = Map(x -> data)
+
     logger.info(session.run(feeds = feed_dict, fetches = y).summarize())
   }
 }
